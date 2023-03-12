@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		input[type="button"] {
+			font-size: 20px;
+			width: 50px;
+			height: 50px;
+			border: none;
+			background-color: #eee;
+			cursor: pointer;
+			transition: background-color 0.2s;
+			margin: 5px;
+		}
+		input[type="button"]:hover {
+			background-color: #ccc;
+		}
+		#resultado {
+			font-size: 30px;
+			margin: 20px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #eee;
+			transition: background-color 0.2s;
+		}
+		#resultado.mostrando {
+			background-color: #f8f8f8;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculadora</h1>
+	<div>
+		<input type="text" id="resultado" disabled>
+	</div>
+	<div>
+		<input type="button" value="7" onclick="adicionar('7')">
+		<input type="button" value="8" onclick="adicionar('8')">
+		<input type="button" value="9" onclick="adicionar('9')">
+		<input type="button" value="/" onclick="adicionar('/')">
+	</div>
+	<div>
+		<input type="button" value="4" onclick="adicionar('4')">
+		<input type="button" value="5" onclick="adicionar('5')">
+		<input type="button" value="6" onclick="adicionar('6')">
+		<input type="button" value="*" onclick="adicionar('*')">
+	</div>
+	<div>
+		<input type="button" value="1" onclick="adicionar('1')">
+		<input type="button" value="2" onclick="adicionar('2')">
+		<input type="button" value="3" onclick="adicionar('3')">
+		<input type="button" value="-" onclick="adicionar('-')">
+	</div>
+	<div>
+		<input type="button" value="0" onclick="adicionar('0')">
+		<input type="button" value="." onclick="adicionar('.')">
+		<input type="button" value="=" onclick="calcular()">
+		<input type="button" value="+" onclick="adicionar('+')">
+	</div>
+
+	<script type="text/javascript">
+		let resultado = document.getElementById('resultado');
+
+		function adicionar(valor) {
+			resultado.value += valor;
+		}
+
+		function calcular() {
+			try {
+				resultado.value = eval(resultado.value);
+				resultado.classList.add('mostrando');
+				setTimeout(function() {
+					resultado.classList.remove('mostrando');
+				}, 200);
+			} catch (error) {
+				alert('Erro na expressão: ' + error);
+			}
+		}
+	</script>
+</body>
+</html>
